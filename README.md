@@ -19,6 +19,7 @@ pip install -r requirements.txt
 4. Configure as variáveis de ambiente:
 Crie um arquivo .env na raiz do projeto e defina as variáveis necessárias.Exemplo do .env:
 SECRET_KEY=sua_chave_secreta
+
 DEBUG=True
 
 5. Aplique as migrações do banco de dados:
@@ -28,11 +29,15 @@ python manage.py migrate
 python manage.py runserver
 
 Autenticação JWT:
-Esta API usa autenticação JWT. Certifique-se de incluir um token JWT válido no cabeçalho Authorization ao fazer solicitações para views protegidas.
+Esta API usa autenticação JWT. Para obter um token JWT, você precisará de um usuário no sistema. Se você ainda não tem um usuário, siga estas etapas para criar um superusuário:
+1. Abra o terminal no diretório do seu projeto.
+2. Execute o seguinte comando para criar um superusuário:
+   ```bash
+   python manage.py createsuperuser
 
 Endpoints:
 Autenticação:
-POST /api/token/: Obtém um token de acesso usando as credenciais do usuário.
+POST /api/token/: Obtém um token de acesso usando as credenciais do superusuário.
 POST /api/token/refresh/: Atualiza um token de acesso expirado.
 POST /api/token/verify/: Verifica a validade de um token.
 
